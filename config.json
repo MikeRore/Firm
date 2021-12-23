@@ -1,12 +1,12 @@
 {
-    "baseUrl": "http://andagr.github.io/Firm",
-    "disqusShortname": "firmblog",
+    "baseUrl": "http://localhost:5000",
+    "disqusShortname": "(none)",
     "rss": {
         "title": "Firm",
         "description": "A blog-aware, static site generator in F#",
         "language": "en-us",
         "category": "Software Development",
-        "managingEditor": "bandagr@gmail.com",
-        "webMaster": "bandagr@gmail.com"
+        "managingEditor": "andreas@mailinator.com",
+        "webMaster": "andreas@mailinator.com"
     }
 }
