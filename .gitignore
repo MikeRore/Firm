@@ -233,3 +233,5 @@ $RECYCLE.BIN/
 # Custom
 output/
 data/
+.fake/
+.ionide/
