@@ -1,13 +1,16 @@
-#About
+# About
+
 Firm is a blog-aware, static site generator written in [F#](http://fsharp.org).
 
-#Features
+## Features
+
 It supports stand-alone pages, blog posts, rss, tags (tag cloud) and post archive. Templates are written in [Razor](https://github.com/Antaris/RazorEngine). Posts and pages are written in [Markdown](http://daringfireball.net/projects/markdown/).
 
-#Getting started
+## Getting started
+
 There are quite a few manual steps right now, the plan is to automate this bit by bit with [FAKE](https://github.com/fsharp/FAKE).
 
-1. Fork the project at https://github.com/andagr/Firm.
+1. Fork the project at <https://github.com/andagr/Firm>.
 2. Clone it to a local directory.
 3. Create the folders `data\templates\razor` and add the following template files:
 
@@ -19,11 +22,12 @@ There are quite a few manual steps right now, the plan is to automate this bit b
 
 4. The names should hint at what they should do, and if you need some inspiration then look in the [data branch of this repo](https://github.com/andagr/Firm/tree/data).
 
-##Creating your first blog post
+## Creating your first blog post
+
 1. To write your first blog post, create the directory `data\input\blog\post\<name-of-blog-post>` and add the following files:
 
-    	index.md
-    	meta.json
+        index.md
+        meta.json
 
 2. Open meta.json and add data about the post, example:
 
@@ -37,16 +41,18 @@ There are quite a few manual steps right now, the plan is to automate this bit b
 4. Open `config.json` in the Firm root directory and change `baseUrl` to `http://locahost:8080`. Also take this moment and change the other settings to your liking.
 5. Open a console in the root directory of Firm and type: `firm generate`. Dependencies should now be downloaded, project built and web site generated into the folder `output`.
 6. In the console, run `firm preview`, verify that the site looks good and then hit `[Enter]` in the console to exit preview mode.
-7. Open `config.json` again and change `baseUrl` to the root url of your site, if it's on GitHub Pages (see publishing below) then it's most likely http://(user).github.io/Firm.
+7. Open `config.json` again and change `baseUrl` to the root url of your site, if it's on GitHub Pages (see publishing below) then it's most likely <http://(user).github.io/Firm>.
 8. Open a console in the root directory of Firm and run `firm generate`.
 9. **Don't forget to add, commit and push the changes to your repository.**
-	* The `data` folder is ignored by default, you can open `.gitignore` and remove the entry, it's at the very bottom of the file.
-	* The `output` folder is also ignored by default, you can either remove the entry or follow the instructions for publishing to GitHub Pages below.
+        *The `data` folder is ignored by default, you can open `.gitignore` and remove the entry, it's at the very bottom of the file.
+        *The `output` folder is also ignored by default, you can either remove the entry or follow the instructions for publishing to GitHub Pages below.
 
-##Publishing to GitHub Pages
+## Publishing to GitHub Pages
+
 There are [many different hosts for static websites](https://www.google.com/search?q=static+website+hosting), but in this guide I will refer to [GitHub Pages](https://pages.github.com/). Please note that in this case I refer to GitHub Pages for project sites.
 
-###One time setup
+### One time setup
+
 1. Open a console in the root directory of Firm and create a new branch:
 
         git branch gh-pages
@@ -69,21 +75,21 @@ There are [many different hosts for static websites](https://www.google.com/sear
 
         git clone -b gh-pages https://github.com/(user)/Firm.git output
 
-###Creating a repeatable workflow
+### Creating a repeatable workflow
 
 1. Add or edit a post or page.
-2. Change config.json:baseUrl to http://localhost:8080.
+2. Change config.json:baseUrl to <http://localhost:8080>.
 3. Run `firm generate` to generate your site in the `output` folder.
 4. Run `firm preview` and verify that it looks ok.
 5. Change back config.json.
 6. Run `firm generate` again.
-6. Add, commit and push changes on both your `master` and `gh-pages` branches.
+7. Add, commit and push changes on both your `master` and `gh-pages` branches.
 
 You're done! All you have to do from now on is create content, verify that it looks ok and then push it to GitHub Pages.
 
 Happy blogging!
 
-#Thanks to
+## Thanks to
 
 * [FsBlog](https://github.com/fsprojects/FsBlog) - For the idea.
 * [FSharp.Formatting](https://github.com/tpetricek/FSharp.Formatting) - Markdown parsing and code formatting.
