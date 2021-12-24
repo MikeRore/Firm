@@ -1,8 +1,8 @@
 ﻿namespace Firm
 
 open System.Collections.Generic
-open FSharp.Markdown
-open FSharp.Literate
+open FSharp.Formatting.Markdown
+open FSharp.Formatting.Literate
 
 module Urls =
     let toAbsUrl (prefix:string) (url:string) =
@@ -13,18 +13,18 @@ module Urls =
 
     let withAbsUrls baseUrl (paragraphs:MarkdownParagraphs, definedLinks: IDictionary<string, (string * string option)>) =
         let rec fromSpan = function
-            | DirectLink(spans, (url, title)) -> DirectLink(spans, (toAbsUrl baseUrl url, title))
-            | Matching.SpanNode(sni, ss) ->
+            | DirectLink(spans, url, title, range) -> DirectLink(spans, (toAbsUrl baseUrl url), title, range)
+            | MarkdownPatterns.SpanNode(sni, ss) ->
                 let ss = List.map fromSpan ss
-                Matching.SpanNode(sni, ss)
+                MarkdownPatterns.SpanNode(sni, ss)
             | other -> other
         let rec fromPar = function
-            | Matching.ParagraphNested(pni, nested) ->
+            | MarkdownPatterns.ParagraphNested(pni, nested) ->
                 let ps = List.map (List.map fromPar) nested
-                Matching.ParagraphNested(pni, ps)
-            | Matching.ParagraphSpans(si, ss) ->
+                MarkdownPatterns.ParagraphNested(pni, ps)
+            | MarkdownPatterns.ParagraphSpans(si, ss) ->
                 let ss = List.map fromSpan ss
-                Matching.ParagraphSpans(si, ss)
+                MarkdownPatterns.ParagraphSpans(si, ss)
             | other -> other
         let fromDefLinks (defLinks:IDictionary<string, string * string option>) =
             defLinks

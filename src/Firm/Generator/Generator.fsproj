@@ -6,6 +6,7 @@
     <WarnOn>3390;$(WarnOn)</WarnOn>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="paket.references" />
     <Compile Include="Urls.fs" />
     <Compile Include="Models.fs" />
     <Compile Include="Data.fs" />
@@ -14,5 +15,6 @@
     <Compile Include="Transformation.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="..\..\..\.paket\Paket.Restore.targets" />
 </Project>

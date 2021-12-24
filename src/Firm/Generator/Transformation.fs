@@ -2,7 +2,7 @@
 
 open System.IO
 open Files
-open FSharp.Literate
+open FSharp.Formatting.Literate
 open Firm.Models
 open Data
 
@@ -27,9 +27,9 @@ module Transformation =
                 let ld = 
                     match pf.Type with
                     | Md -> Literate.ParseMarkdownFile(pf.File.Input)
-                    | Fsx -> Literate.ParseScriptFile(pf.File.Input)
+                    | Fsx -> Literate.ParseAndCheckScriptFile(pf.File.Input)
                     |> Urls.Literate.withAbsUrls config.BaseUrl
-                let doc = Literate.WriteHtml(ld) 
+                let doc = Literate.ToHtml(ld) 
                 pf, PostModel(pf.Name, meta.Title, meta.Date, meta.Tags, doc))
             |> List.sortBy (fun (_, pm) -> pm.Date)
             |> List.rev
@@ -49,7 +49,7 @@ module Transformation =
             (p, PageModel(
                     config.BaseUrl,
                     config.DisqusShortname,
-                    Literate.WriteHtml(Literate.ParseMarkdownFile(p.File.Input) |> Urls.Literate.withAbsUrls config.BaseUrl),
+                    Literate.ToHtml(Literate.ParseMarkdownFile(p.File.Input) |> Urls.Literate.withAbsUrls config.BaseUrl),
                     allPosts,
                     tagCloud)))
         |> List.iter Output.Razor.writePage

@@ -34,7 +34,7 @@ module Files =
     let (@+) path1 path2 =
         Path.Combine(path1, path2)
 
-    let (@.) file ext =
+    let (@.) (file:string) (ext:string) =
         let fwoe = Path.GetDirectoryName(file) @+ Path.GetFileNameWithoutExtension(file)
         fwoe + ext
 
@@ -62,7 +62,7 @@ module Files =
         | ".fsx" -> Content(Fsx)
         | _ -> Resource
 
-    let private input fileExists (id, od) f =
+    let private input fileExists (id, od) (f:string) =
         let meta = Path.GetDirectoryName(f) @+ "meta.json"
         match f with
         | Content itype when fileExists meta ->

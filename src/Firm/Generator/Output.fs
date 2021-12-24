@@ -7,7 +7,7 @@ open Firm.Models
 open Data
 open RazorEngine
 open RazorEngine.Templating
-open FSharp.Markdown
+open FSharp.Formatting.Markdown
 
 module Output =
     let copyResource (resource: ResourceFile) =
@@ -43,7 +43,7 @@ module Output =
                     |> List.rev
                     |> List.map (fun pf ->
                     let md = Markdown.Parse(File.ReadAllText(pf.File.Input)) |> Urls.Markdown.withAbsUrls config.BaseUrl
-                    let html = Markdown.WriteHtml(md)
+                    let html = Markdown.ToHtml(md)
                     element "item" [
                         element "title" [text pf.Meta.Title]
                         element "link" [text (Urls.toAbsUrl config.BaseUrl (sprintf "/blog/post/%s" pf.Name))]
